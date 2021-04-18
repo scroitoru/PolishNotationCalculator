@@ -6,8 +6,8 @@ public class Calculator {
 
     /**
      * @param expression
-     * pointer currOp keeps track of the operators and operands through a stack
-     * every time operator is encountered, pops 2 operands and evaluates
+     * pointer currOp keeps track of the operators and operands by pushing
+     * the operands to a stack. If an operator is encountered, pops 2 operands and evaluates
      */
     public static double calculate(String expression) {
         Stack<Double> stack = new Stack<>();
@@ -52,5 +52,24 @@ public class Calculator {
     public static boolean isValidDigit(char x) {
         return x >= 48 && x <= 57;
     }
-    
+
+    /**
+     * @param expression
+     * converts the characters entered to the digit following it
+     * ex: +x3y2 -> +32
+     */
+    public static String convertToNums(String expression){
+        char[] arr = expression.toCharArray();
+        int length = expression.length();
+        String replaced = "";
+        for (int curr = 0; curr < length; curr++){
+            int temp = arr[curr];
+            if (temp >= 65 && temp <=90 || temp >= 97 & temp <= 122 || temp == 32){
+                continue;
+            }
+            replaced += arr[curr];
+        }
+        return replaced;
+    }
+
 }
